@@ -15,7 +15,7 @@ filterSomeObjects =
             , { name = "English" }
             ]
     in
-        filter .name "el" languages
+        Simple.Fuzzy.filter .name "el" languages
 ```
 
 gives:
