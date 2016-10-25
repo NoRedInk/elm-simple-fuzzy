@@ -1,12 +1,12 @@
 {
     "version": "1.0.0",
-    "summary": "Fuzzy filtering for lists of strings",
+    "summary": "Fuzzy matching and filtering for strings",
     "repository": "https://github.com/NoRedInk/string-filter.git",
     "license": "BSD3-Clause",
     "source-directories": [
         "src"
     ],
-    "exposed-modules": ["String.Filter"],
+    "exposed-modules": ["Simple.Fuzzy"],
     "dependencies": {
         "elm-lang/core": "4.0.5 <= v < 5.0.0"
     },

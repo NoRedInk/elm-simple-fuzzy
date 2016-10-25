@@ -1,10 +1,10 @@
-module String.Filter exposing (match, root, filter)
+module Simple.Fuzzy exposing (match, root, filter)
 
 {-| Fuzzy match through a list of strings
 
-# Matching and Searching
+# Matching and Filtering
 
-@docs match
+@docs match, filter
 
 # Helpers
 
@@ -16,7 +16,7 @@ import String
 import Char
 
 
-{-| match allows you to see if the letters of your query
+{-| `match` allows you to see if the letters of your query
 match within a bigger string.
 
     match "poo" "Poo" --> True
@@ -31,7 +31,7 @@ match needle haystack =
         |> isJust
 
 
-{-| filter will filter an arbitrary list of objects given a function that
+{-| `filter` will filter an arbitrary list of objects given a function that
 converts the object to value you want to match on
 
     let
@@ -58,7 +58,7 @@ filter map needle records =
     List.filter ((match needle) << map) records
 
 
-{-| root strips a word down to just the lower case version of itself
+{-| `root` strips a word down to just the lower case version of itself
 without any punctuation or spacing.
 
     root "Wow, I'm excited!!!!" --> "wowimexcited"

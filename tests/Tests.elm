@@ -2,7 +2,7 @@ module Tests exposing (..)
 
 import Test exposing (..)
 import Expect exposing (Expectation, equal)
-import String.Filter exposing (match, root, filter)
+import Simple.Fuzzy exposing (match, root, filter)
 
 
 all : Test
@@ -16,7 +16,7 @@ all =
 
 matchTests : Test
 matchTests =
-    Test.describe "String.Filter.match"
+    Test.describe "Simple.Fuzzy.match"
         [ Test.describe "should match"
             [ test "when no needle" <|
                 \() -> match "" "word" |> equal True
@@ -50,9 +50,9 @@ matchTests =
 
 filterTests : Test
 filterTests =
-    Test.describe "String.Filter.filter"
+    Test.describe "Simple.Fuzzy.filter"
         [ test "filters for all the matching strings" <|
-            \() -> String.Filter.filter .name "el" dummyList |> equal expectedList
+            \() -> Simple.Fuzzy.filter .name "el" dummyList |> equal expectedList
         ]
 
 
@@ -79,7 +79,7 @@ expectedList =
 
 rootTests : Test
 rootTests =
-    Test.describe "String.Filter.root"
+    Test.describe "Simple.Fuzzy.root"
         [ Test.describe "should break a word down to its canonical self"
             [ test "with an empty string" <|
                 \() -> root "" |> equal ""
