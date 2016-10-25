@@ -22,8 +22,6 @@ matchTests =
                 \() -> match "" "word" |> equal True
             , test "when single letter starts haystack" <|
                 \() -> match "w" "word" |> equal True
-            , test "when single letter starts haystack" <|
-                \() -> match "w" "word" |> equal False
             , test "when single letter is in haystack" <|
                 \() -> match "o" "word" |> equal True
             , test "when multiple letters start haystack" <|
