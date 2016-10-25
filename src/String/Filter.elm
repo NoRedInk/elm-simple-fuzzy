@@ -1,4 +1,4 @@
-module String.Filter exposing (match, root)
+module String.Filter exposing (match, root, filter)
 
 {-| Fuzzy match through a list of strings
 
@@ -29,6 +29,33 @@ match needle haystack =
     root needle
         |> String.foldl searchHelper (Just <| root haystack)
         |> isJust
+
+
+{-| filter will filter an arbitrary list of objects given a function that
+converts the object to value you want to match on
+
+    let
+        languages =
+            [ { name = "Elm" }
+            , { name = "Ruby" }
+            , { name = "Rust" }
+            , { name = "Haskell" }
+            , { name = "javascript" }
+            , { name = "English" }
+            ]
+    in
+        filter .name "el" languages
+
+    -- Gives:
+    -- [ { name = "Elm" }
+    -- , { name = "Haskell"}
+    -- , { name = "English"}
+    -- ]
+
+-}
+filter : (a -> String) -> String -> List a -> List a
+filter map needle records =
+    List.filter ((match needle) << map) records
 
 
 {-| root strips a word down to just the lower case version of itself

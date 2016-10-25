@@ -2,13 +2,14 @@ module Tests exposing (..)
 
 import Test exposing (..)
 import Expect exposing (Expectation, equal)
-import String.Filter exposing (match, root)
+import String.Filter exposing (match, root, filter)
 
 
 all : Test
 all =
     Test.concat
         [ matchTests
+        , filterTests
         , rootTests
         ]
 
@@ -45,6 +46,35 @@ matchTests =
                 \() -> match "rr" "word" |> equal False
             ]
         ]
+
+
+filterTests : Test
+filterTests =
+    Test.describe "String.Filter.filter"
+        [ test "filters for all the matching strings" <|
+            \() -> String.Filter.filter .name "el" dummyList |> equal expectedList
+        ]
+
+
+type alias Language =
+    { name : String }
+
+
+dummyList : List Language
+dummyList =
+    [ Language "Elm"
+    , Language "Javascript"
+    , Language "Ruby"
+    , Language "Elixir"
+    , Language "Ruby"
+    ]
+
+
+expectedList : List Language
+expectedList =
+    [ Language "Elm"
+    , Language "Elixir"
+    ]
 
 
 rootTests : Test
