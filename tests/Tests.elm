@@ -5,15 +5,6 @@ import Expect exposing (Expectation, equal)
 import Simple.Fuzzy exposing (match, root, filter)
 
 
-all : Test
-all =
-    Test.concat
-        [ matchTests
-        , filterTests
-        , rootTests
-        ]
-
-
 matchTests : Test
 matchTests =
     Test.describe "Simple.Fuzzy.match"
@@ -87,9 +78,9 @@ rootTests =
                 \() -> root "a" |> equal "a"
             , test "with many letters" <|
                 \() -> root "abc" |> equal "abc"
-            , test "with some capital letters" <|
+            , test "with capital letters in the middle" <|
                 \() -> root "aBc" |> equal "abc"
-            , test "with some capital letters" <|
+            , test "with capital letters at the start" <|
                 \() -> root "Aaron" |> equal "aaron"
             , test "with some punctuation and spaces letters" <|
                 \() -> root "abc!! f" |> equal "abcf"
