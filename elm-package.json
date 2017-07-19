@@ -1,5 +1,5 @@
 {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "summary": "Fuzzy matching and filtering for strings",
     "repository": "https://github.com/NoRedInk/elm-simple-fuzzy.git",
     "license": "BSD3-Clause",
