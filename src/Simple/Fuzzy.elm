@@ -59,16 +59,17 @@ filter map needle records =
 
 
 {-| `root` strips a word down to just the lower case version of itself
-without any punctuation or spacing.
+without any punctuation or spacing.  Digits are retained.
 
     root "Wow, I'm excited!!!!" --> "wowimexcited"
+    root "I'm excited 2!" --> "imexcited2"
 
 -}
 root : String -> String
 root string =
     string
         |> String.toLower
-        |> String.filter Char.isLower
+        |> String.filter (\c -> (Char.isLower c) || (Char.isDigit c))
 
 
 searchHelper : Char -> Maybe String -> Maybe String
