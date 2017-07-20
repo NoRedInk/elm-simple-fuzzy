@@ -20,7 +20,9 @@ import Char
 match within a bigger string.
 
     match "poo" "Poo" --> True
+
     match "poo" "Police" --> False
+
     match "poo" "Please be polite Online!" --> True
 
 -}
@@ -45,12 +47,10 @@ converts the object to value you want to match on
             ]
     in
         filter .name "el" languages
-
-    -- Gives:
-    -- [ { name = "Elm" }
-    -- , { name = "Haskell"}
-    -- , { name = "English"}
-    -- ]
+    --> [ { name = "Elm" }
+    --> , { name = "Haskell"}
+    --> , { name = "English"}
+    --> ]
 
 -}
 filter : (a -> String) -> String -> List a -> List a
@@ -62,6 +62,7 @@ filter map needle records =
 without any punctuation or spacing.  Digits are retained.
 
     root "Wow, I'm excited!!!!" --> "wowimexcited"
+
     root "I'm excited 2!" --> "imexcited2"
 
 -}
