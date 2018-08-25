@@ -7,9 +7,6 @@ all: test documentation.json
 clean:
 	rm -rf elm-stuff tests/Doc documentation.json
 
-elm-stuff:
-	elm package install --yes
-
 documentation.json: elm-stuff ${ELM_FILES}
 	elm make --docs=$@
 
