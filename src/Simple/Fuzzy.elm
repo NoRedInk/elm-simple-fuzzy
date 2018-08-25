@@ -1,10 +1,12 @@
-module Simple.Fuzzy exposing (match, root, filter)
+module Simple.Fuzzy exposing (filter, match, root)
 
 {-| Fuzzy match through a list of strings
+
 
 # Matching and Filtering
 
 @docs match, filter
+
 
 # Helpers
 
@@ -12,8 +14,8 @@ module Simple.Fuzzy exposing (match, root, filter)
 
 -}
 
-import String
 import Char
+import String
 
 
 {-| `match` allows you to see if the letters of your query
@@ -55,11 +57,11 @@ converts the object to value you want to match on
 -}
 filter : (a -> String) -> String -> List a -> List a
 filter map needle records =
-    List.filter ((match needle) << map) records
+    List.filter (match needle << map) records
 
 
 {-| `root` strips a word down to just the lower case version of itself
-without any punctuation or spacing.  Digits are retained.
+without any punctuation or spacing. Digits are retained.
 
     root "Wow, I'm excited!!!!" --> "wowimexcited"
 
@@ -70,7 +72,7 @@ root : String -> String
 root string =
     string
         |> String.toLower
-        |> String.filter (\c -> (Char.isLower c) || (Char.isDigit c))
+        |> String.filter (\c -> Char.isLower c || Char.isDigit c)
 
 
 searchHelper : Char -> Maybe String -> Maybe String
