@@ -7,7 +7,7 @@ all: test documentation.json
 clean:
 	rm -rf elm-stuff tests/Doc documentation.json
 
-documentation.json: elm-stuff ${ELM_FILES}
+documentation.json: ${ELM_FILES}
 	elm make --docs=$@
 
 .PHONY: test
