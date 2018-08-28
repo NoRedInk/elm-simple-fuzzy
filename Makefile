@@ -5,20 +5,14 @@ all: test documentation.json
 
 .PHONY: clean
 clean:
-	rm -rf elm-stuff tests/elm-stuff tests/Doc documentation.json
+	rm -rf elm-stuff tests/Doc documentation.json
 
-elm-stuff:
-	elm package install --yes
-
-documentation.json: elm-stuff ${ELM_FILES}
-	elm make --yes --warn --docs=$@
+documentation.json: ${ELM_FILES}
+	elm make --docs=$@
 
 .PHONY: test
-test: tests/Doc tests/elm-stuff
-	elm test
+test: tests/Doc
+	rm -rf elm-stuff/generated-code/elm-explorations/test/ && elm-test
 
 tests/Doc: ${ELM_FILES}
-	elm-verify-examples
-
-tests/elm-stuff: tests/elm-package.json
-	cd tests && elm package install --yes
+	rm -rf elm-stuff/generated-code/elm-explorations/test/ && elm-verify-examples
